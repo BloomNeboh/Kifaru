@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,13 +10,11 @@
   <meta name="description" content="Plan your dream safari across Serengeti, Ngorongoro, Zanzibar, and Kilimanjaro with an interactive AI guide." />
 </head>
 <body>
-  <!-- Header -->
   <header class="site-header">
     <a class="logo" href="#home" aria-label="Go to homepage">
       <img src="assets/logo.svg" alt="" role="presentation">
       <span>Karibu Tanzania</span>
     </a>
-
     <nav class="nav">
       <a href="#destinations" class="nav-link">Destinations</a>
       <a href="#planner" class="nav-link">Planner</a>
@@ -24,7 +22,6 @@
       <a href="#nyota" class="nav-link">Ask Nyota</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
-
     <div class="controls">
       <label class="theme-label" for="themeSelect">Theme</label>
       <select id="themeSelect" aria-label="Theme presets">
@@ -37,13 +34,10 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section id="home" class="hero">
     <div class="hero-media">
-      <!-- Optional: Replace with a video for cinematic effect -->
       <img src="assets/hero-serengeti.jpg" alt="Golden Serengeti plains at sunset">
     </div>
-
     <div class="hero-content">
       <h1>Find your own path through Tanzania</h1>
       <p>Serengeti migrations, Zanzibar turquoise waters, and Kilimanjaro skies—crafted into a journey that feels personal.</p>
@@ -52,8 +46,6 @@
         <a href="#destinations" class="btn ghost">Explore highlights</a>
       </div>
     </div>
-
-    <!-- Animated waves -->
     <div class="wave-wrap">
       <svg class="wave wave-1" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0,96L80,90.7C160,85,320,75,480,90.7C640,107,800,149,960,170.7C1120,192,1280,192,1360,192L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
@@ -64,61 +56,42 @@
     </div>
   </section>
 
-  <!-- Featured Destinations (Parallax) -->
   <section id="destinations" class="destinations">
     <header class="section-header">
       <h2>Destinations</h2>
       <p>Three worlds, one country—wild plains, ancient calderas, and island blues.</p>
     </header>
-
     <div class="cards">
       <article class="card parallax" data-parallax>
         <img src="assets/serengeti.jpg" alt="Serengeti savannah with wildlife">
-        <div class="card-body">
-          <h3>Serengeti</h3>
-          <p>Witness the Great Migration and endless horizons that humble and thrill.</p>
-        </div>
+        <div class="card-body"><h3>Serengeti</h3><p>Witness the Great Migration and endless horizons.</p></div>
       </article>
-
       <article class="card parallax" data-parallax>
         <img src="assets/ngorongoro.jpg" alt="Ngorongoro crater rim">
-        <div class="card-body">
-          <h3>Ngorongoro</h3>
-          <p>A caldera of life—predators, herds, and whispering mist.</p>
-        </div>
+        <div class="card-body"><h3>Ngorongoro</h3><p>A caldera of life—predators, herds, and mist.</p></div>
       </article>
-
       <article class="card parallax" data-parallax>
         <img src="assets/zanzibar.jpg" alt="Zanzibar beach with turquoise water">
-        <div class="card-body">
-          <h3>Zanzibar</h3>
-          <p>Spice-laced alleys, dhow silhouettes, and water that heals the spirit.</p>
-        </div>
+        <div class="card-body"><h3>Zanzibar</h3><p>Spice-laced alleys and dreamy turquoise waters.</p></div>
       </article>
-
       <article class="card parallax" data-parallax>
         <img src="assets/kilimanjaro.jpg" alt="Snow-capped Mount Kilimanjaro">
-        <div class="card-body">
-          <h3>Kilimanjaro</h3>
-          <p>Above the clouds, a summit where grit meets wonder.</p>
-        </div>
+        <div class="card-body"><h3>Kilimanjaro</h3><p>Above the clouds—grit meets wonder.</p></div>
       </article>
     </div>
   </section>
 
-  <!-- Interactive Planner -->
   <section id="planner" class="planner">
     <header class="section-header">
       <h2>Build your safari</h2>
-      <p>Drag destinations into your plan and Nyota will fine-tune your route.</p>
+      <p>Drag destinations into your plan and ask Nyota for a day-by-day route.</p>
     </header>
-
     <div class="planner-grid">
       <div class="pool" aria-label="Available destinations">
         <div class="chip" draggable="true" data-destination="Serengeti">Serengeti</div>
         <div class="chip" draggable="true" data-destination="Ngorongoro">Ngorongoro</div>
         <div class="chip" draggable="true" data-destination="Tarangire">Tarangire</div>
-        <div class="chip" draggable="true" data-destination="Manyara">Lake Manyara</div>
+        <div class="chip" draggable="true" data-destination="Lake Manyara">Lake Manyara</div>
         <div class="chip" draggable="true" data-destination="Zanzibar">Zanzibar</div>
         <div class="chip" draggable="true" data-destination="Kilimanjaro">Kilimanjaro</div>
       </div>
@@ -134,32 +107,27 @@
           <label for="days">Days</label>
           <input id="days" type="range" min="3" max="14" step="1" value="7">
         </div>
-        <button id="optimizeBtn" class="btn primary">Ask Nyota to optimize</button>
+        <button id="optimizeBtn" class="btn primary">Ask Nyota (server)</button>
         <div id="planFeedback" class="feedback" aria-live="polite"></div>
       </aside>
     </div>
   </section>
 
-  <!-- Virtual Safari -->
   <section id="virtual" class="virtual">
     <header class="section-header">
       <h2>Virtual safari</h2>
       <p>Step inside a panoramic preview—perfect before the journey begins.</p>
     </header>
-
     <div class="virtual-wrap">
-      <!-- Replace with 360 viewer lib later; placeholder pan effect -->
       <img src="assets/panorama.jpg" alt="Panoramic savannah view" class="panorama" />
     </div>
   </section>
 
-  <!-- Nyota AI Assistant -->
   <section id="nyota" class="nyota">
     <header class="section-header">
       <h2>Ask Nyota</h2>
-      <p>Your AI guide for timing, routes, and hidden gems—now with voice.</p>
+      <p>Your AI guide for timing, routes, and hidden gems—now server-backed.</p>
     </header>
-
     <div class="nyota-ui">
       <div class="chat">
         <div id="chatLog" class="chat-log" aria-live="polite"></div>
@@ -169,17 +137,16 @@
           <button id="voiceBtn" class="btn ghost" aria-label="Nyota speaks">🔊 Speak</button>
           <button id="listenBtn" class="btn ghost" aria-label="Voice input">🎙️ Listen</button>
         </div>
+        <div id="itineraryView" class="itinerary-view"></div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="contact">
     <header class="section-header">
       <h2>Contact & booking</h2>
       <p>Reach out—let’s map a journey that fits your heartbeat.</p>
     </header>
-
     <div class="contact-grid">
       <div class="contact-icons">
         <a href="tel:+255700000000" class="contact-icon" aria-label="Call us">
@@ -195,7 +162,6 @@
           <img src="assets/whatsapp.svg" alt="" role="presentation"><span>WhatsApp</span>
         </a>
       </div>
-
       <form class="contact-form" novalidate>
         <div class="form-row">
           <label for="name">Name</label>
@@ -215,7 +181,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <p>© <span id="year"></span> Karibu Tanzania. All rights reserved.</p>
     <div class="socials">
