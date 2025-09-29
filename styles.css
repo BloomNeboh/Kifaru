@@ -77,10 +77,12 @@
 
 /* Global */
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+}
 body {
   margin: 0;
-  font-family: 'Outfit', system-ui, sans-serif;
+  font-family: 'Outfit', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   scroll-behavior: smooth;
@@ -108,9 +110,16 @@ body {
   text-decoration: none;
   color: var(--text);
   font-weight: 600;
+  letter-spacing: 0.2px;
 }
-.logo img { width: 36px; height: 36px; }
-.nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.logo img {
+  width: 36px; height: 36px;
+}
+.nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 .nav-link {
   color: var(--text);
   text-decoration: none;
@@ -118,7 +127,11 @@ body {
   border-radius: 8px;
 }
 .nav-link:hover { background: var(--surface); }
-.controls { display: flex; align-items: center; gap: 0.5rem; }
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 .theme-label { color: var(--muted); }
 
 /* Buttons */
@@ -151,7 +164,7 @@ body {
   gap: 2rem;
   padding: 3rem 1rem 6rem;
 }
-.hero-media img {
+.hero-media img, .hero-media video {
   width: 100%;
   height: 60vh;
   object-fit: cover;
@@ -163,8 +176,19 @@ body {
 .cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
 /* Waves */
-.wave-wrap { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; pointer-events: none; }
-.wave { position: absolute; left: 0; bottom: 0; width: 200%; height: 120px; fill: none; }
+.wave-wrap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 120px;
+  pointer-events: none;
+}
+.wave {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 200%;
+  height: 120px;
+  fill: none;
+}
 .wave path { fill: var(--wave1); }
 .wave-2 path { fill: var(--wave2); }
 .wave-1 { animation: waveShift 9s linear infinite; }
@@ -176,24 +200,214 @@ body {
 }
 
 /* Section header */
-.section-header { text-align: center; margin: 2.5rem 0 1rem; }
-.section-header h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); margin: 0 0 0.25rem; }
-.section-header p { margin: 0; color: var(--muted); }
+.section-header {
+  text-align: center;
+  margin: 2.5rem 0 1rem;
+}
+.section-header h2 {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  margin: 0 0 0.25rem;
+}
+.section-header p {
+  margin: 0;
+  color: var(--muted);
+}
 
 /* Destinations */
 .destinations { padding: 2rem 1rem 3rem; }
-.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
 .card {
   background: var(--card);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow);
+  transform: translateZ(0);
 }
-.card img { width: 100%; height: 190px; object-fit: cover; }
+.card img {
+  width: 100%; height: 190px; object-fit: cover;
+}
 .card-body { padding: 0.75rem 1rem 1rem; }
 .card-body h3 { margin: 0 0 0.25rem; }
 .card-body p { margin: 0; color: var(--muted); }
 
+/* Parallax hint */
+.parallax { will-change: transform; }
+
 /* Planner */
 .planner { padding: 2rem 1rem 3rem; }
-.planner-grid { display: grid; grid-template-columns: 
+.planner-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr;
+  gap: 1rem;
+}
+.pool, .itinerary, .suggestions {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  min-height: 220px;
+}
+.pool { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  background: var(--surface);
+  border: 1px solid color-mix(in oklab, var(--text) 15%, transparent);
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  cursor: grab;
+}
+.itinerary { display: grid; align-content: start; gap: 0.5rem; }
+.hint { color: var(--muted); margin: 0; }
+.suggestions .controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.feedback { color: var(--muted); }
+
+/* Virtual */
+.virtual { padding: 2rem 1rem 3rem; }
+.virtual-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.panorama {
+  display: block;
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  transform-origin: center;
+  transition: transform 400ms ease;
+}
+
+/* Nyota */
+.nyota { padding: 2rem 1rem 3rem; }
+.nyota-ui .chat {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.chat-log {
+  min-height: 160px;
+  display: grid;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.chat-bubble {
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  max-width: 70ch;
+}
+.chat-bubble.user {
+  background: color-mix(in oklab, var(--primary) 12%, var(--surface));
+  justify-self: end;
+}
+.chat-bubble.nyota {
+  background: var(--surface);
+  color: var(--text);
+  justify-self: start;
+}
+.chat-controls {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 0.5rem;
+}
+#chatInput {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Contact */
+.contact { padding: 2rem 1rem 3rem; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.contact-icons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(160px, 1fr));
+  gap: 0.75rem;
+  align-content: start;
+}
+.contact-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  transition: transform 120ms ease, background 200ms ease;
+}
+.contact-icon:hover { transform: translateY(-1px); }
+.contact-icon img {
+  width: 36px; height: 36px;
+}
+.contact-icon span {
+  font-weight: 600;
+}
+.contact-form {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+.form-row { display: grid; gap: 0.25rem; margin-bottom: 0.75rem; }
+.form-row input, .form-row textarea {
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  background: var(--surface);
+  color: var(--text);
+}
+.form-feedback { color: var(--muted); margin-top: 0.5rem; }
+
+/* Footer */
+.site-footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
+  border-top: 1px solid color-mix(in oklab, var(--surface) 50%, transparent);
+}
+.socials { display: flex; gap: 0.75rem; }
+.socials a { color: var(--muted); text-decoration: none; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+  .planner-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-media img { height: 48vh; }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .chat-controls { grid-template-columns: 1fr auto auto auto; }
+  .contact-icon img { width: 40px; height: 40px; } /* Larger on touch */
+}
+@media (max-width: 480px) {
+  .cards { grid-template-columns: 1fr; }
+  .nav { display: none; } /* Simplify for very small screens or convert to burger in future */
+  .contact-icon { padding: 1rem; }
+  .contact-icon img { width: 44px; height: 44px; } /* Even larger for thumb reach */
+}
