@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kifaru Tours | Where the Wild Leads You</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Poppins for clean, premium feel; Playfair for classy headings -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <meta name="description" content="Kifaru — premium East Africa safaris. Kilimanjaro, Serengeti, Zanzibar, Ngorongoro, Ruaha. Eco-conscious, community-driven adventures." />
+</head>
+<body class="theme-light">
+  <!-- Wave overlay for theme transition -->
+  <div class="wave-overlay" aria-hidden="true"></div>
+
+  <!-- Nyota: interactive star -->
+  <button id="nyota" class="nyota" aria-label="Nyota interactive assistant" title="Nyota: your friendly star guide">
+    ★
+    <span class="nyota-tooltip">Speak to Nyota</span>
+  </button>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand">
+        <img src="assets/logo.png" alt="Kifaru logo" class="logo" />
+        <span class="brand-text">Kifaru</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#tours" class="nav-link">Tours</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="sun">☀️</span>
+          <span class="moon">🌙</span>
+          <span class="toggle-text">Theme</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-content container">
+      <h1 class="hero-title">Where the Wild Leads You</h1>
+      <p class="hero-subtitle">Premium safaris and coastal escapes across Tanzania — crafted with heart, guided by community, and tread lightly.</p>
+      <div class="hero-cta">
+        <a href="#tours" class="btn btn-primary">Explore Featured Tours</a>
+        <a href="#contact" class="btn btn-outline">Plan with a Guide</a>
+      </div>
+    </div>
+    <div class="hero-bg" role="img" aria-label="Sunrise over savannah"></div>
+  </section>
+
+  <!-- Featured Tours -->
+  <section id="tours" class="section tours">
+    <div class="container">
+      <h2 class="section-title">Featured Tours</h2>
+      <p class="section-desc">From icy Kilimanjaro to the golden plains of the Serengeti — choose your path. Each tour includes a fully detailed 4-day itinerary and total price.</p>
+
+      <div class="tours-grid">
+        <!-- Kilimanjaro -->
+        <article class="tour-card tour-icy">
+          <img src="assets/kilimanjaro.jpg" alt="Mount Kilimanjaro" class="tour-img" />
+          <div class="tour-body">
+            <h3 class="tour-title">Kilimanjaro Icy Summit Trek</h3>
+            <p class="tour-snippet">Chase the glaciers on Africa’s rooftop. Crisp air, big views, and a story for the ages.</p>
+            <div class="tour-meta">
+              <span class="badge">4 days</span>
+              <span class="badge">From $1,650</span>
+            </div>
+            <a class="btn btn-card" href="tours/tour-kilimanjaro.html">View details</a>
+          </div>
+        </article>
+
+        <!-- Serengeti -->
+        <article class="tour-card tour-lion">
+          <img src="assets/serengeti.jpg" alt="Serengeti National Park" class="tour-img" />
+          <div class="tour-body">
+            <h3 class="tour-title">Serengeti Big Five Safari</h3>
+            <p class="tour-snippet">Lion manes in the wind, endless horizons, and the rhythm of the migration.</p>
+            <div class="tour-meta">
+              <span class="badge">4 days</span>
+              <span class="badge">From $1,450</span>
+            </div>
+            <a class="btn btn-card" href="tours/tour-serengeti.html">View details</a>
+          </div>
+        </article>
+
+        <!-- Zanzibar -->
+        <article class="tour-card tour-zebra">
+          <img src="assets/zanzibar.jpg" alt="Zanzibar beaches" class="tour-img" />
+          <div class="tour-body">
+            <h3 class="tour-title">Zanzibar Spice & Sea Escape</h3>
+            <p class="tour-snippet">Turquoise waters, spice markets, and sunsets that teach you to breathe again.</p>
+            <div class="tour-meta">
+              <span class="badge">4 days</span>
+              <span class="badge">From $980</span>
+            </div>
+            <a class="btn btn-card" href="tours/tour-zanzibar.html">View details</a>
+          </div>
+        </article>
+
+        <!-- Ngorongoro -->
+        <article class="tour-card tour-leopard">
+          <img src="assets/ngorongoro.jpg" alt="Ngorongoro Crater" class="tour-img" />
+          <div class="tour-body">
+            <h3 class="tour-title">Ngorongoro Crater Discovery</h3>
+            <p class="tour-snippet">A wild amphitheater of life — fertile floors and ancient walls alive with movement.</p>
+            <div class="tour-meta">
+              <span class="badge">4 days</span>
+              <span class="badge">From $1,250</span>
+            </div>
+            <a class="btn btn-card" href="tours/tour-ngorongoro.html">View details</a>
+          </div>
+        </article>
+
+        <!-- Ruaha -->
+        <article class="tour-card tour-mane">
+          <img src="assets/ruaha.jpg" alt="Ruaha National Park" class="tour-img" />
+          <div class="tour-body">
+            <h3 class="tour-title">Ruaha Rivers & Baobabs</h3>
+            <p class="tour-snippet">Quiet giants, rugged terrain, and solitude that tastes like freedom.</p>
+            <div class="tour-meta">
+              <span class="badge">4 days</span>
+              <span class="badge">From $1,180</span>
+            </div>
+            <a class="btn btn-card" href="tours/tour-ruaha.html">View details</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section about">
+    <div class="container">
+      <h2 class="section-title">About Kifaru</h2>
+      <p class="section-desc">
+        We design premium, eco-conscious journeys across Tanzania — guided by local knowledge and powered by community partnerships.
+        When you travel with Kifaru, you support conservation and livelihoods. Tunakukaribisha — you’re warmly welcome.
+      </p>
+
+      <div class="about-grid">
+        <div class="about-item">
+          <h3 class="about-title">Our promise</h3>
+          <p class="about-text">Fair pay for guides and crews, low-impact travel, and authentic experiences that respect place and people.</p>
+        </div>
+        <div class="about-item">
+          <h3 class="about-title">Crafted itineraries</h3>
+          <p class="about-text">We blend adventure with comfort — from tented camps under a billion stars to boutique stays by the Indian Ocean.</p>
+        </div>
+        <div class="about-item">
+          <h3 class="about-title">Local flavor</h3>
+          <p class="about-text">Taste, listen, learn: spices in Stone Town, stories by the fire, and jokes that make the journey lighter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2 class="section-title">Contact & Bookings</h2>
+      <p class="section-desc">Ready to plan? Reach us directly — we reply fast, faster than a marabou on a french fry.</p>
+
+      <div class="contact-grid">
+        <a class="contact-card whatsapp" href="https://wa.me/255700000000" target="_blank" rel="noopener" aria-label="WhatsApp us">
+          <span class="contact-icon">🟢</span>
+          <div class="contact-body">
+            <h3 class="contact-title">WhatsApp</h3>
+            <p class="contact-text">+255 700 000 000</p>
+          </div>
+        </a>
+
+        <a class="contact-card phone" href="tel:+255700000000" aria-label="Call us">
+          <span class="contact-icon">📞</span>
+          <div class="contact-body">
+            <h3 class="contact-title">Phone</h3>
+            <p class="contact-text">+255 700 000 000</p>
+          </div>
+        </a>
+
+        <a class="contact-card facebook" href="https://facebook.com/kifaru.tours" target="_blank" rel="noopener" aria-label="Facebook">
+          <span class="contact-icon">📘</span>
+          <div class="contact-body">
+            <h3 class="contact-title">Facebook</h3>
+            <p class="contact-text">@kifaru.tours</p>
+          </div>
+        </a>
+
+        <a class="contact-card instagram" href="https://instagram.com/kifaru.tours" target="_blank" rel="noopener" aria-label="Instagram">
+          <span class="contact-icon">📸</span>
+          <div class="contact-body">
+            <h3 class="contact-title">Instagram</h3>
+            <p class="contact-text">@kifaru.tours</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-text">© <span id="year"></span> Kifaru Tours. Crafted in Tanzania with love and chai.</p>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#tours">Tours</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
