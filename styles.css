@@ -411,3 +411,28 @@ body {
   .contact-icon { padding: 1rem; }
   .contact-icon img { width: 44px; height: 44px; } /* Even larger for thumb reach */
 }
+/* === Wave Animation === */
+.wave-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 200px; /* adjust height as needed */
+}
+.wave {
+  position: absolute;
+  bottom: 0;
+  width: 200%;
+  height: 100%;
+}
+.wave-1 {
+  animation: waveSlide 12s linear infinite;
+  opacity: 0.6;
+}
+.wave-2 {
+  animation: waveSlide 20s linear infinite reverse;
+  opacity: 0.8;
+}
+@keyframes waveSlide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
