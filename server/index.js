@@ -7,21 +7,19 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// CORS for local dev (adjust origins for production)
 app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:5173',
-    // Add your GitHub Pages domain if serving front-end from there
+    // Add your deployed frontend domain here for production
   ],
   credentials: false
 }));
 
-// Health check
+// Health check endpoint
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
-// Helper: simple itinerary generator (rule-based demo)
-// Replace with calls to your AI provider for richer itineraries.
+// Simple itinerary generator (rule-based)
 function generateItinerary({ itineraryItems = [], days = 7, budget = 3 }) {
   const items = itineraryItems.length ? itineraryItems : ['Arusha', 'Tarangire', 'Serengeti', 'Ngorongoro', 'Zanzibar'];
   const dayPlans = [];
@@ -56,30 +54,33 @@ function generateItinerary({ itineraryItems = [], days = 7, budget = 3 }) {
   };
 }
 
-// Nyota API: server-backed responses
+// Nyota API: receive message and respond
 app.post('/api/nyota', async (req, res) => {
   const { message = '', context = {} } = req.body;
 
-  // Build a friendly reply based on message intents
+  // Rule-based replies for demo purposes
   const q = String(message).toLowerCase();
   let reply = "Here’s a personalized, day-by-day plan based on your preferences.";
   if (q.includes('best time')) reply = "June–October is ideal for safaris; Jan–Feb for calving in Serengeti; Zanzibar is great year-round.";
   else if (q.includes('kilimanjaro')) reply = "Plan 6–8 days; Machame or Lemosho routes are excellent. I’ve included acclimatization where possible.";
   else if (q.includes('budget')) reply = "I’ll balance mid-range camps with one splurge night and suggest shoulder-season travel for value.";
-  else if (q.includes('optimize')) reply = "I optimized your route and placed Zanzibar at the end for a relaxing finish.";
 
-  // Generate itinerary (replace with AI integration if desired)
-  const itinerary = generateItinerary(context);
+  // Add more intents as needed...
 
-  // Example AI integration (pseudo-code):
-  // const aiReply = await callYourAIProvider({ message, context });
-  // reply = aiReply.text; itinerary = aiReply.itinerary;
+  // Optionally include itinerary generation if requested
+  let itinerary = null;
+  if (q.includes('plan') || q.includes('itinerary')) {
+    itinerary = generateItinerary(context);
+  }
 
-  res.json({ reply, itinerary });
+  res.json({
+    reply,
+    itinerary
+  });
 });
 
-// Serve locally
+// Start server
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Nyota server running on http://localhost:${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
 });
