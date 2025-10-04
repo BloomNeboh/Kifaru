@@ -78,7 +78,7 @@ itinerary.addEventListener('drop', (e) => {
   itinerary.appendChild(item);
 });
 
-// Nyota AI (rule-based + voice)
+// Nyota AI (server-powered + voice)
 const chatLog = document.getElementById('chatLog');
 const chatInput = document.getElementById('chatInput');
 const sendBtn = document.getElementById('sendBtn');
@@ -87,19 +87,7 @@ const listenBtn = document.getElementById('listenBtn');
 const planFeedback = document.getElementById('planFeedback');
 const optimizeBtn = document.getElementById('optimizeBtn');
 
-// Simple intent responses
-function nyotaRespond(text) {
-  const q = text.toLowerCase();
-  let a = "I’m thinking about that. Tell me what you value more—wildlife, coast, or summit?";
-  if (q.includes('best time')) a = "June–October is ideal for safaris; Jan–Feb for calving in the Serengeti; Zanzibar is lovely year-round.";
-  else if (q.includes('serengeti')) a = "Serengeti stuns with the Great Migration; add Ngorongoro for predators and Tarangire for elephants.";
-  else if (q.includes('zanzibar')) a = "Zanzibar blends spice, Stone Town’s history, and beaches—perfect after northern circuit safaris.";
-  else if (q.includes('kilimanjaro')) a = "Allow 6–8 days; Machame is scenic, Lemosho is quieter; acclimatization days help.";
-  else if (q.includes('budget')) a = "Balance by mixing mid-range lodges with one splurge night; travel shoulder season for value.";
-  return a;
-}
-
-// Chat UI helpers
+// Helper: add chat bubble
 function addBubble(text, who = 'nyota') {
   const div = document.createElement('div');
   div.className = `chat-bubble ${who}`;
@@ -108,15 +96,36 @@ function addBubble(text, who = 'nyota') {
   chatLog.scrollTop = chatLog.scrollHeight;
 }
 
-// Send message
-function sendMessage() {
+// Server API request to Nyota
+async function nyotaAPIRequest(text, context = {}) {
+  const response = await fetch('http://localhost:8080/api/nyota', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: text, context })
+  });
+  if (!response.ok) throw new Error('Nyota server error');
+  const data = await response.json();
+  return data.reply || "Sorry, I couldn't get a response.";
+}
+
+// Send message with Nyota server call
+async function sendMessage() {
   const text = chatInput.value.trim();
   if (!text) return;
   addBubble(text, 'user');
-  const reply = nyotaRespond(text);
-  addBubble(reply, 'nyota');
-  speak(reply);
   chatInput.value = '';
+  // Show loading bubble
+  addBubble('...', 'nyota');
+  try {
+    const reply = await nyotaAPIRequest(text);
+    // Remove loading bubble
+    chatLog.removeChild(chatLog.lastChild);
+    addBubble(reply, 'nyota');
+    speak(reply);
+  } catch (err) {
+    chatLog.removeChild(chatLog.lastChild);
+    addBubble("Sorry, I couldn't reach the Nyota server.", 'nyota');
+  }
 }
 sendBtn.addEventListener('click', sendMessage);
 chatInput.addEventListener('keypress', (e) => {
