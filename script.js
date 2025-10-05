@@ -6,14 +6,13 @@ const root = document.documentElement;
 const themeSelect = document.getElementById('themeSelect');
 const applyTheme = (name) => {
   root.setAttribute('data-theme', name);
-  // Optionally persist
-  localStorage.setItem('theme', name);
+  localStorage.setItem('theme', name); // Optionally persist
 };
 applyTheme(localStorage.getItem('theme') || 'light');
 themeSelect.value = root.getAttribute('data-theme');
 themeSelect.addEventListener('change', (e) => applyTheme(e.target.value));
 
-// Smooth scrolling for nav links (enhanced for older browsers)
+// Smooth scrolling for nav links
 document.querySelectorAll('a.nav-link, .cta .btn').forEach(link => {
   link.addEventListener('click', (e) => {
     const href = link.getAttribute('href') || '';
@@ -78,7 +77,7 @@ itinerary.addEventListener('drop', (e) => {
   itinerary.appendChild(item);
 });
 
-// Nyota AI (server-powered + voice)
+// Nyota AI (rule-based + voice) -- now connects to backend!
 const chatLog = document.getElementById('chatLog');
 const chatInput = document.getElementById('chatInput');
 const sendBtn = document.getElementById('sendBtn');
@@ -87,25 +86,24 @@ const listenBtn = document.getElementById('listenBtn');
 const planFeedback = document.getElementById('planFeedback');
 const optimizeBtn = document.getElementById('optimizeBtn');
 
-// Helper: add chat bubble
+// Helper to call Nyota backend API
+async function nyotaAPIRequest(text) {
+  const response = await fetch('http://localhost:8080/api/nyota', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: text })
+  });
+  const data = await response.json();
+  return data.reply || "Sorry, I couldn't get a response.";
+}
+
+// Chat UI helpers
 function addBubble(text, who = 'nyota') {
   const div = document.createElement('div');
   div.className = `chat-bubble ${who}`;
   div.textContent = text;
   chatLog.appendChild(div);
   chatLog.scrollTop = chatLog.scrollHeight;
-}
-
-// Server API request to Nyota
-async function nyotaAPIRequest(text, context = {}) {
-  const response = await fetch('http://localhost:8080/api/nyota', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: text, context })
-  });
-  if (!response.ok) throw new Error('Nyota server error');
-  const data = await response.json();
-  return data.reply || "Sorry, I couldn't get a response.";
 }
 
 // Send message with Nyota server call
@@ -136,7 +134,6 @@ chatInput.addEventListener('keypress', (e) => {
 function speak(text) {
   if (!('speechSynthesis' in window)) return;
   const utter = new SpeechSynthesisUtterance(text);
-  // Pick a suitable voice if available
   const voices = speechSynthesis.getVoices();
   const swahiliPref = voices.find(v => /swahili|ki?swahili/i.test(v.name + ' ' + v.lang));
   utter.voice = swahiliPref || voices.find(v => v.lang.startsWith('en')) || null;
